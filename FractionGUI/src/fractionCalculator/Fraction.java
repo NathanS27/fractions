@@ -1,7 +1,7 @@
 package fractionCalculator;
 
 public class Fraction {
-
+//test
 	public int numerator;
 	public int denominator;
 
