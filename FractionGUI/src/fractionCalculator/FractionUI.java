@@ -2,7 +2,7 @@ package fractionCalculator;
 
 import javax.swing.*;
 import BreezySwing.*;
-
+//test
 public class FractionUI extends GBFrame {
 
 	JLabel num1 = addLabel										("First Fraction",		 1, 1, 1, 1);
@@ -16,6 +16,7 @@ public class FractionUI extends GBFrame {
 	IntegerField den2Field = addIntegerField					(0,						 2, 4, 1, 1);
 
 	JButton multiply = addButton								("multiply",			 3, 1, 1, 1);
+	JButton divide = addButton									("divide",				 3, 3, 1, 1);
 
 	public void buttonClicked(JButton buttonObj) {
 		int den1 =0;
@@ -25,7 +26,7 @@ public class FractionUI extends GBFrame {
 		Fraction f1, f2, f3;
 		String str = "";
 
-		if (buttonObj == multiply) {
+		if (buttonObj == multiply || buttonObj == divide) {
 
 			String inputError = "";
 			Boolean valid = true; 
@@ -77,9 +78,16 @@ public class FractionUI extends GBFrame {
 				f2 = new Fraction(num2, den2);
 				
 				f3 = new Fraction();
-				f3.multiply(f1, f2);
-
-				str = String.format("%s * %s = %s", f1.toString(true), f2.toString(true), f3.toString(true));
+				
+				if(buttonObj ==multiply) {
+					f3.multiply(f1, f2);
+					str = String.format("%s * %s = %s", f1.toString(true), f2.toString(true), f3.toString(true));
+				}
+				else {
+					f3.divide(f1, f2);
+					str = String.format("%s / %s = %s", f1.toString(false), f2.toString(false), f3.toString(false));
+				}
+				
 				messageBox(str);
 			}
 		}	
@@ -92,6 +100,3 @@ public class FractionUI extends GBFrame {
 		frm.setVisible(true);
 	}
 }
-
-
-

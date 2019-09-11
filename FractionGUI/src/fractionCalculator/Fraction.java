@@ -1,15 +1,13 @@
 package fractionCalculator;
 
 public class Fraction {
-//test
+
 	public int numerator;
 	public int denominator;
 
 	public Fraction(int num, int den) {
 		numerator = num;
 		denominator = den;
-		
-		
 	}
 
 	public Fraction() {
@@ -24,9 +22,6 @@ public class Fraction {
 		int whole;
 		String str = new String();
 
-		
-		
-		
 		if (num > 0 && den > 0) {
 			for (int i = Math.min(num, den); i > 0; i--) {
 				if (num % i == 0 && den % i == 0) {
@@ -57,30 +52,25 @@ public class Fraction {
 		}
 
 		return str;
-
 	}
-
-
 
 	// Multiply
 	public void multiply(Fraction f1, Fraction f2) {
-		
 		numerator = f1.numerator * f2.numerator;
 		denominator = f1.denominator * f2.denominator;
-
 	}
+	
+	// Divide
+		public void divide(Fraction f1, Fraction f2) {
+			numerator = f1.numerator / f2.numerator;
+			denominator = f1.denominator / f2.denominator;
+		}
 
 	public String toString(boolean reduce) {
-
 		if (reduce) {
-
 			return reduce();
 		} else {
 			return String.format("%d/%d", numerator, denominator);
 		}
-
 	}
-
 }
-
-
