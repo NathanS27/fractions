@@ -7,19 +7,19 @@ import java.awt.geom.*;
 
 public class FractionUI extends GBFrame {
 
-	JLabel space1 = addLabel									("		",				 3, 1, 1, 1);
-	JLabel space2 = addLabel									("		",				 3, 4, 1, 1);
-	
-	JLabel num1 = addLabel										("First Fraction",		 1, 2, 1, 1);
-	JTextField num1Field = addTextField							(null,					 1, 3, 1, 1);
-	JTextField den1Field = addTextField							(null, 					 2, 3, 1, 1);
+	JLabel space1 = addLabel								("		",				 3, 1, 1, 1);
+	JLabel space2 = addLabel								("		",				 3, 4, 1, 1);
 
-	JLabel num2 = addLabel										("Second Fraction",		 4, 2, 1, 1);
-	JTextField num2Field = addTextField							(null,					 4, 3, 1, 1);
-	JTextField den2Field = addTextField							(null,					 5, 3, 1, 1);
+	JLabel num1 = addLabel									("First Fraction",		 1, 2, 1, 1);
+	JTextField num1Field = addTextField						(null,					 1, 3, 1, 1);
+	JTextField den1Field = addTextField						(null, 					 2, 3, 1, 1);
 
-	JButton multiply = addButton								("multiply",			 7, 2, 1, 1);
-	JButton divide = addButton									("divide",				 7, 3, 1, 1);
+	JLabel num2 = addLabel									("Second Fraction",		 4, 2, 1, 1);
+	JTextField num2Field = addTextField						(null,					 4, 3, 1, 1);
+	JTextField den2Field = addTextField						(null,					 5, 3, 1, 1);
+
+	JButton multiply = addButton							("multiply",			 7, 2, 1, 1);
+	JButton divide = addButton								("divide",				 7, 3, 1, 1);
 
 	public void buttonClicked(JButton buttonObj) {
 		int den1 = 0;
@@ -51,6 +51,10 @@ public class FractionUI extends GBFrame {
 		
 		try {
 			den1 = Integer.parseInt(den1Field.getText());
+			if(den1 == 0) {
+				inputError += "Denominator 1 cannot be 0 \n";
+				valid = false;
+			}
 		}
 		catch (NumberFormatException e) {
 			inputError += "Denominator 1 must be a valid integer \n";
@@ -59,6 +63,10 @@ public class FractionUI extends GBFrame {
 		
 		try {
 			den2 = Integer.parseInt(den2Field.getText());
+			if(den2 == 0) {
+				inputError += "Denominator 2 cannot be 0 \n";
+				valid = false;
+			}
 		}
 		catch (NumberFormatException e) {
 			inputError += "Denominator 2 must be a valid integer \n";
@@ -80,8 +88,13 @@ public class FractionUI extends GBFrame {
 				str = String.format("%s * %s = %s", f1.toString(true), f2.toString(true ), f3.toString(true));
 			} 
 			else {
-				f3.divide(f1, f2);
-				str = String.format("%s / %s = %s", f1.toString(true), f2.toString(true), f3.toString(true));
+				if (num2 == 0) {
+					str = String.format("Divide by 0 error");
+				}
+				else if(num2 != 0) {
+					f3.divide(f1, f2);
+					str = String.format("%s / %s = %s", f1.toString(true), f2.toString(true), f3.toString(true));
+				}
 			}
 			
 			//prints final answer

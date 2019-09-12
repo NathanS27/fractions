@@ -74,7 +74,8 @@ public class Fraction {
 	public String toString(boolean reduce) {
 		if (reduce) {
 			return reduce();
-		} else {
+		} 
+		else {
 			reduce();
 			return String.format("%d/%d", numerator, denominator);
 		}
