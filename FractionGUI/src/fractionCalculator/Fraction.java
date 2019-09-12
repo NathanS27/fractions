@@ -17,8 +17,10 @@ public class Fraction {
 
 	public String reduce() {
 		Boolean negative = numerator * denominator < 0;
+		//removes negatives
 		int num = Math.abs(numerator);
 		int den = Math.abs(denominator);
+		
 		int whole;
 		String str = new String();
 
@@ -50,6 +52,9 @@ public class Fraction {
 		if (num != 0) {
 			str += String.format("%d/%d", num, den);
 		}
+		if(whole == 0 && num == 0 ) {
+			str += String.format("0");
+		}
 
 		return str;
 	}
@@ -62,14 +67,15 @@ public class Fraction {
 	
 	// Divide
 		public void divide(Fraction f1, Fraction f2) {
-			numerator = f1.numerator / f2.numerator;
-			denominator = f1.denominator / f2.denominator;
+			numerator = f1.numerator * f2.denominator;
+			denominator = f1.denominator * f2.numerator;
 		}
 
 	public String toString(boolean reduce) {
 		if (reduce) {
 			return reduce();
 		} else {
+			reduce();
 			return String.format("%d/%d", numerator, denominator);
 		}
 	}
